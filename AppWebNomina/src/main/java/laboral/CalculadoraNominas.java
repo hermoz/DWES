@@ -21,17 +21,16 @@ public class CalculadoraNominas {
 				
 		while (!salir) {
 			
-			System.out.println("1. Ver todos los empleados \n"
-					+ "2. Ver salario de un empleado especifico \n"
-					+ "3. Submenu de edicion \n"
-					+ "4. Recalcular y actualizar sueldo de un empleado \n"
-					+ "5. Recalcular y actualizar sueldos de todos los empleados \n"
-					+ "6. Realizar copia de seguridad de la BBDD en fichero \n"
-					+ "Pulsa cualquier otra tecla para salir");
-			String opcionMenu = s2.nextLine();
+			System.out.println("1_Mostrar informacion empleados \n"
+					+ "2_Mostrar salario empleado especifico\n"
+					+ "3_Modificar datos empleado\n"
+					+ "4_Recalcular y actualizar sueldo de empleado \n"
+					+ "5_Recalcular y actualizar sueldo de todos los empleados \n"
+					+ "Salir");
 			
+			String menuOpciones= s2.nextLine();
 		
-			switch (opcionMenu) {
+			switch (menuOpciones) {
 				case "1": 
 					
 					for (String empleado : bbdd.mostrarEmpleados()) {
@@ -39,16 +38,16 @@ public class CalculadoraNominas {
 					}
 					
 					break;
-				case "2":
 					
-					System.out.println("Introduce el dni: ");
+				case "2":					
+					System.out.println("Introduzca DNI: ");
 					String dni = s2.nextLine();
 					System.out.println(bbdd.buscarSalario(dni));
-					
-					
+	
 					break;
+					
 				case "3":
-					System.out.println("Introduce DNI para editar el empleado");
+					System.out.println("Introduzca DNI para modificar empleado: ");
 					String dniEditar = s2.nextLine();
 					String nombreNuevo;
 					String sexoNuevo;
@@ -56,13 +55,13 @@ public class CalculadoraNominas {
 					int anyosNuevos;
 					
 					
-						System.out.println("Elige un campo para editar \n"
-								+ "1. Nombre \n"
-								+ "2. Sexo \n"
-								+ "3. Categoria \n"
-								+ "4. Anyos \n"
-								+ "5. Todos los campos \n"
-								+ "Introduce cualquier otra tecla para salir.");
+						System.out.println("Elija campo a editar \n"
+								+ "1_ Nombre \n"
+								+ "2_ Sexo \n"
+								+ "3_ Categoria \n"
+								+ "4_ Anyos \n"
+								+ "5_ Todos los campos \n"
+								+ "Introduzca cualquier otra tecla para salir del menu");
 						
 						
 							Empleado empleadoParaEditar = bbdd.buscarEmpleado(dniEditar);
@@ -70,42 +69,42 @@ public class CalculadoraNominas {
 							
 						switch (opcionSubmenu) {
 						case "1":
-							System.out.println("Elija el nuevo nombre");
+							System.out.println("Actualizar nombre");
 							nombreNuevo = s2.nextLine();
 							bbdd.editarEmpleado(new Empleado(nombreNuevo, dniEditar, empleadoParaEditar.sexo, empleadoParaEditar.getCategoria(), empleadoParaEditar.anyos));
 							
 							break;
 						case "2":
-							System.out.println("Elija el nuevo sexo");
+							System.out.println("Actualizar sexo");
 							sexoNuevo = s2.nextLine();
 							bbdd.editarEmpleado(new Empleado(empleadoParaEditar.nombre, dniEditar, sexoNuevo.charAt(0), empleadoParaEditar.getCategoria(), empleadoParaEditar.anyos));
-
-							
-							
+						
 							break;
+							
 						case "3":
-							System.out.println("Elija la nueva categoria");
+							System.out.println("Actualizar categoria");
 							categoriaNueva = s2.nextInt();
 							bbdd.editarEmpleado(new Empleado(empleadoParaEditar.nombre, dniEditar, empleadoParaEditar.sexo, categoriaNueva, empleadoParaEditar.anyos));
 
 							break;
 						case "4":
-							System.out.println("Elija los nuevos anyos");
+							System.out.println("Actualizar anyos");
 							anyosNuevos = s1.nextInt();
 							bbdd.editarEmpleado(new Empleado(empleadoParaEditar.nombre, dniEditar, empleadoParaEditar.sexo, empleadoParaEditar.getCategoria(), anyosNuevos));
 
 							break;
+							
 						case "5":
-							System.out.println("Elija el nuevo nombre");
+							System.out.println("Nuevo nombre");
 							nombreNuevo = s2.nextLine();
 							
-							System.out.println("Elija el nuevo sexo");
+							System.out.println("Nuevo sexo");
 							sexoNuevo = s2.nextLine();
 							
-							System.out.println("Elija la nueva categoria");
+							System.out.println("Nueva categoria");
 							categoriaNueva = s1.nextInt();
 							
-							System.out.println("Elija los nuevos anyos");
+							System.out.println("Nuevos anyos");
 							anyosNuevos = s1.nextInt();
 							
 							bbdd.editarEmpleado(new Empleado(nombreNuevo, dniEditar, sexoNuevo.charAt(0), categoriaNueva, anyosNuevos));
@@ -120,7 +119,7 @@ public class CalculadoraNominas {
 					break;
 					
 				case "4":
-					System.out.println("Introduce el dni para recalcular el sueldo");
+					System.out.println("Introduzca DNI para recalcular el sueldo");
 					dniEditar = s2.nextLine();
 					bbdd.calcularSueldo(bbdd.buscarEmpleado(dniEditar));
 					
