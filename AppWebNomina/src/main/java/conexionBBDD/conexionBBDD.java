@@ -2,15 +2,17 @@ package conexionBBDD;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
 
 
 import laboral.DatosNoCorrectosException;
@@ -19,12 +21,15 @@ import laboral.Nomina;
 
 public class conexionBBDD {
 
+	//declaramos primero las variables
 	Connection con;
 	Statement stmt;
 	ResultSet rs;
 
 	public conexionBBDD() throws SQLException, ClassNotFoundException {
 		Class.forName("com.mysql.cj.jdbc.Driver");
+		
+		//establecemos la conexion
 		con = DriverManager.getConnection("jdbc:mysql://localhost:3306/nomina", "root", "root");
 	}
 
